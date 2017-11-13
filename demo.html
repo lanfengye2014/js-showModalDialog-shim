@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>showModalDialog polyfill demo</title>
+    </head>
+    <body>
+      <h1>showModalDialog polyfill demo</h1>
+      <form action="">
+	<p>
+	  <input id="button2" type="button" value="Show Modal Dialog using eval">
+	</p>
+      </form>
+      <script src="showModalDialog_d.js"></script>
+      <script>
+	document.getElementById('button2').addEventListener('click', function() {
+	  var ret = window.showModalDialog("demo-modal.html", "some argument", "dialogWidth:500px;dialogHeight:200px");
+	  alert("Returned from modal: " + ret);
+	});
+      </script>
+    </body>
+</html>
