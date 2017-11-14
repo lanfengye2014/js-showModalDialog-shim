@@ -6,10 +6,16 @@
     <body>
       <h1>showModalDialog modal demo</h1>
       <p>Dialog argments: <span id="arg"></span></p>
+	  <form>
+		
       </form>
+	  <input id="button2" type="button" value="close">
       <script>
 	document.getElementById('arg').innerHTML = window.dialogArguments;
 	window.returnValue = "some return value";
+		document.getElementById('button2').addEventListener('click', function() {
+			window.close();
+	});
       </script>
     </body>
 </html>
