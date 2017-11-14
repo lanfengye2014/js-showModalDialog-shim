@@ -1,4 +1,4 @@
-﻿/*
+/*
 使用示例
 var ret = window.showModalDialog("demo-modal.html","some argument","dialogWidth:320px;dialogHeight:200px");
 alert("Returned from modal: " +ret);
@@ -39,7 +39,15 @@ iframe内页面返回值如下：
 		dialog.style["padding-bottom"] = 0;
         dialog.innerHTML = '<div style="margin-left: -16px;margin-right: -16px;"><div style="margin-top: -10px;margin-right:10px;height:0px;"><lable id="iframe-title"></lable><a href="#" id="dialog-close" style="position: absolute; top: 0; right: 4px; font-size: 20px; color: #000; text-decoration: none; outline: none;">&times;</a></div></div><iframe id="dialog-body" src="' + url + '" style="border: 0; width: 100%; height: 100%;overflow:auto"></iframe>';
         var iframe = document.getElementById('dialog-body');
-        document.getElementById('dialog-body').contentWindow.dialogArguments = arg;
+		var iframeWindow = document.getElementById('dialog-body').contentWindow;
+        iframeWindow.dialogArguments = arg;
+		var oldClose = document.getElementById('dialog-body').contentWindow.close;
+		document.getElementById('dialog-body').contentWindow.close=function(){
+			oldClose();
+			setTimeout(function(){
+				dialogClose();
+			},0)
+		}
         document.getElementById('dialog-close').addEventListener('click', function(e) {
             e.preventDefault();
 			dialogClose();
